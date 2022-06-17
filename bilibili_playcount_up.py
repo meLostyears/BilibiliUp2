@@ -10,7 +10,7 @@ def work(_driver: WebDriver, args):
     print('work start ')
     ml.ensure_dir('screenshots')
     ml.ensure_dir('bili')
-    _driver.get('https://www.bilibili.com/video/deo/BV1dA4y1R7mt')
+    _driver.get('https://www.bilibili.com/video/deo/BV1dA4y1R7mt?spm_id_from=333.337.search-card.all.click')
     # 旧xpath，已经失效
     # xpath = '/html/body/div[2]/div[2]/div[1]/div[2]/div/div[1]/div/div[1]/div[1]/div[10]/div[2]/div[2]/div[1]/div[1]/button'
     # xpath = '/html/body/div[2]/div[2]/div[1]/div[2]/div/div[1]/div/div[1]/div[1]/div[11]/div[2]/div[2]/div[1]/div[1]/button'
@@ -53,6 +53,6 @@ if __name__ == '__main__':
     import quick_firefox
     import ml
 
-   # while True:
+   while True:
     r = quick_firefox.run_sync(work=work, args=())
     print('run success')
