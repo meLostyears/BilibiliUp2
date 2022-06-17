@@ -1,0 +1,58 @@
+从 selenium.webdriver.firefox.webdriver 导入 WebDriver
+导入 selelib
+
+
+def 工作（_driver：WebDriver，args）：
+    导入系统
+    进口毫升
+    进口时间
+    导入 selelib
+    print('工作开始')
+    ml.ensure_dir('截图')
+    ml.ensure_dir('bili')
+    _driver.get('https://www.bilibili.com/video/deo/BV1dA4y1R7mt')
+    #旧xpath，已经失效
+    # xpath = '/html/body/div[2]/div[2]/div[1]/div[2]/div/div[1]/div/div[1]/div[1]/div[ 10]/div[2]/div[2]/div[1]/div[1]/button'
+    # xpath = '/html/body/div[2]/div[2]/div[1]/div[2]/div/div[1]/div/div[1]/div[1]/div[ 11]/div[2]/div[2]/div[1]/div[1]/button'
+    # selelib.lib(_driver).wait_until_xpath(xpath)
+    # time.sleep(10)
+
+    lb=selelib.lib(_driver)
+    而不是 lb.get_html().count('人正在看'):
+        print('未加载')
+        时间.sleep(1)
+    print('按钮确定......')
+    时间.sleep(3)
+    print('执行前')
+    _driver.execute_script('''
+    函数点击（x，y）{
+    var ev = document.createEvent("MouseEvent");
+    var el = document.elementFromPoint(x,y);
+    ev.initMouseEvent(
+        “点击”，
+        真实的，真实的，
+        窗口，空，
+        x, y, 0, 0,
+        假的，假的，假的，假的，假的，
+        0 , 空
+    );
+    el.dispatchEvent(ev);
+    }
+    点击（200,200）；
+    ''')
+    x = selelib.lib(_driver).findall(r'总播放数\d+')
+    打印（x）
+    ml.write_string_append('bili/count.txt', ml.time_() + " " + str(x) + '\n')
+    selelib.lib(_driver).screen_shot('截图/bilibili播放量up_播放前.png')
+    时间.sleep(15)
+    selelib.lib(_driver).screen_shot('截图/bilibili播放量up_play10秒后.png')
+    返回 1
+
+
+如果 __name__ == '__main__'：
+    导入 quick_firefox
+    进口毫升
+
+    而真：
+    r = quick_firefox.run_sync(work=work, args=())
+    print('运行成功')
