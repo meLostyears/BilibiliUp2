@@ -53,6 +53,6 @@ if __name__ == '__main__':
     import quick_firefox
     import ml
 
-    while True:
+   # while True:
     r = quick_firefox.run_sync(work=work, args=())
     print('run success')
